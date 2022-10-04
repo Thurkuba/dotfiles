@@ -289,6 +289,7 @@ exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+exec "setxkbmap -layout us -variant intl"
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -425,3 +426,20 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+exec --no-startup-id setxkbmap -option 'caps:swapescape'
+
+
+exec --no-startup-id alacritty --class dropdown_nvim -e /usr/bin/fish -c "tmux attach-session -t 'editor' || tmux new -s 'editor'"
+for_window [instance="dropdown_nvim"] floating enable, resize set 1920 1050, move position 0px 0px, move scratchpad
+#bindsym $mod+n [instance="dropdown_nvim"] scratchpad show, move position 0px 0px
+bindsym $mod+i exec fish -c anv
+
+# tdrop with alacritty and tmux
+
+exec --no-startup-id alacritty --class dropdown_yakuake -e /usr/bin/fish -c "tmux attach-session -t 'drop' || tmux new -s 'drop'"
+exec --no-startup-id "/home/sua/scripts/unfocus_hide True,,,dropdown_yakuake,,"
+for_window [instance="dropdown_yakuake"] floating enable, resize set 1900 500, move position 10px 5px, move scratchpad
+# bindsym $mod+d exec fish -c ayk
+bindsym F12 exec fish -c ayk
+
