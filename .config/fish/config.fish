@@ -6,6 +6,7 @@ zoxide init fish | source
 starship init fish | source
 
 set --universal EDITOR /bin/vim 
+fish_vi_key_bindings
 
 alias config='/usr/bin/git --git-dir=$HOME/.kconfig/ --work-tree=$HOME'
 alias gitinit='ssh-add ~/.ssh/id_ed25519'

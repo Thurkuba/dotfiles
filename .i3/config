@@ -51,24 +51,22 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'" 
 
-# Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
-bindsym $mod+F3 exec pcmanfm
-# bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec pcmanfm_pkexec
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill picom
-bindsym $mod+Ctrl+t exec --no-startup-id picom -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+# Start Applications 
+bindsym $mod+Ctrl+b exec terminal -e 'bmenu' 
+bindsym $mod+F2 exec palemoon 
+# bindsym $mod+F3 exec pcmanfm 
+bindsym $mod+F3 exec ranger 
+bindsym $mod+Shift+F3 exec pcmanfm_pkexec 
+bindsym $mod+F5 exec terminal -e 'mocp' 
+bindsym $mod+t exec --no-startup-id pkill picom 
+bindsym $mod+Ctrl+t exec --no-startup-id picom -b 
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'" 
+bindsym Print exec --no-startup-id i3-scrot 
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w 
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Ctrl+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # focus_follows_mouse no
 
@@ -289,7 +287,7 @@ exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec "setxkbmap -layout us -variant intl"
+exec "setxkbmap -layout us -variant intl -option 'caps:swapescape'"
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
