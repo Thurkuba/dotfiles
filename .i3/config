@@ -287,7 +287,6 @@ exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec "setxkbmap -layout us -variant intl -option 'caps:swapescape'"
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -441,3 +440,5 @@ for_window [instance="dropdown_yakuake"] floating enable, resize set 1900 500, m
 # bindsym $mod+d exec fish -c ayk
 bindsym F12 exec fish -c ayk
 
+
+exec "setxkbmap -layout us -variant intl -option 'caps:swapescape'"
