@@ -60,7 +60,6 @@ lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
@@ -79,6 +78,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
+  "svelte",
+  "html",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -211,4 +212,11 @@ lvim.plugins = {
 -- })
 
 -- config para consertar barra lateral
-lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
+-- lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
+
+-- keybinds
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+
+lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+
+lvim.keys.normal_mode["<S-x>"] = ":BufferKill<CR>"
