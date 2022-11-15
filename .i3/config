@@ -56,7 +56,7 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness 
 
 # Start Applications 
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu' 
-bindsym $mod+F2 exec palemoon 
+bindsym $mod+F2 exec firefox-developer-edition 
 # bindsym $mod+F3 exec pcmanfm 
 bindsym $mod+F3 exec ranger 
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec 
@@ -137,6 +137,9 @@ bindsym $mod+minus scratchpad show
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
+# - me
+bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+Ctrl+l workspace next
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -148,7 +151,7 @@ set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
-set $ws7 7
+set $ws7 7:test
 set $ws8 8
 
 # switch to workspace
@@ -324,6 +327,11 @@ set_from_resource $term_color15    color15
 bar {
     position bottom
     status_command /usr/bin/i3status-rs
+
+    colors {
+    background "#232323"
+    focused_workspace  #6EBA80 #66AD77 #000000
+    }
   }
 
 # bar {
@@ -359,9 +367,9 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+  client.focused          #2B2C2B #6EBA80 #1C1B10 #FDF6E3
+  client.focused_inactive #2F3D44 #333333 #f0e68c #454948
+  client.unfocused        #2F3D44 #333333 #f0e68c #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
 
@@ -372,8 +380,9 @@ bindsym $mod+m bar mode toggle
 #############################
 
 # Set inner/outer gaps
-gaps inner 14
+gaps inner 8
 gaps outer -2
+
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -424,7 +433,7 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-exec --no-startup-id setxkbmap -option 'caps:swapescape'
+# exec --no-startup-id setxkbmap -option 'caps:swapescape'
 
 
 exec --no-startup-id alacritty --class dropdown_nvim -e /usr/bin/fish -c "tmux attach-session -t 'editor' || tmux new -s 'editor'"
@@ -435,10 +444,9 @@ bindsym $mod+i exec fish -c anv
 # tdrop with alacritty and tmux
 
 exec --no-startup-id alacritty --class dropdown_yakuake -e /usr/bin/fish -c "tmux attach-session -t 'drop' || tmux new -s 'drop'"
-exec --no-startup-id "/home/sua/scripts/unfocus_hide True,,,dropdown_yakuake,,"
+# exec --no-startup-id "/home/sua/scripts/unfocus_hide True,,,dropdown_yakuake,,"
 for_window [instance="dropdown_yakuake"] floating enable, resize set 1900 500, move position 10px 5px, move scratchpad
 # bindsym $mod+d exec fish -c ayk
 bindsym F12 exec fish -c ayk
 
-
-exec "setxkbmap -layout us -variant intl -option 'caps:swapescape'"
+# exec "setxkbmap -layout us -variant intl -option 'caps:swapescape'"

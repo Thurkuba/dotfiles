@@ -1,5 +1,15 @@
+
 [theme]
-name = "modern"
+name = "gruvbox-dark"
+
+[theme.overrides]
+# idle_bg = "#123456"
+# idle_fg = "#abcdef"
+# idle_fg = "#78201C"
+# info_bg = "#78201C"
+# alternating_tint_bg = "#78201C"
+# alternating_tint_fg = "#78201C"
+
 
 [icons]
 name = "awesome"

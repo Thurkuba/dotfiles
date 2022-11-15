@@ -13,4 +13,5 @@ alias config='/usr/bin/git --git-dir=$HOME/.kconfig/ --work-tree=$HOME'
 alias gitinit='ssh-add ~/.ssh/id_ed25519'
 alias lv="lvim ."
 alias lg="lazygit"
-alias run="npm run dev"
+alias dev="npm run dev"
+alias cl="clear"
