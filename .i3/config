@@ -449,5 +449,5 @@ for_window [instance="dropdown_yakuake"] floating enable, resize set 1900 700, m
 # bindsym $mod+d exec fish -c ayk
 bindsym F12 exec fish -c ayk
 
-exec "setxkbmap -layout us -variant intl -option 'caps:swapescape'"
-exec "setxkbmap -option 'altwin:swap_lalt_lwin'"
+exec --no-startup-id setxkbmap -layout us -variant intl -option 'caps:swapescape'
+exec --no-startup-id setxkbmap -option 'altwin:swap_lalt_lwin'

@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "arctic"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -45,7 +45,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["t"] = {
 lvim.builtin.which_key.mappings["r"] = { "<cmd>RnvimrToggle<cr>", "Ranger"
-} 
+}
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 --   name = "+Trouble",
 --   r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -78,8 +78,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
-  "svelte",
-  "html",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -130,7 +128,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   -- { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
+  --   { command = "isort", filetypes = { "python" } },
   {
     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "prettier",
@@ -163,38 +161,48 @@ formatters.setup {
 -- Additional Plugins
 lvim.plugins = {
   {
-      "kevinhwang91/rnvimr",
-        -- cmd = "RnvimrToggle",
-        config = function()
-          vim.g.rnvimr_draw_border = 1
+    "kevinhwang91/rnvimr",
+    -- cmd = "RnvimrToggle",
+    config = function()
+      vim.g.rnvimr_draw_border = 1
       vim.g.rnvimr_pick_enable = 1
       vim.g.rnvimr_bw_enable = 1
-      end,
+    end,
   },
-{
-  "karb94/neoscroll.nvim",
-  event = "WinScrolled",
-  config = function()
-  require('neoscroll').setup({
+  {
+    "karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    config = function()
+      require('neoscroll').setup({
         -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
-        '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
-        hide_cursor = true,          -- Hide cursor while scrolling
-        stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
+          '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+        hide_cursor = true, -- Hide cursor while scrolling
+        stop_eof = true, -- Stop at <EOF> when scrolling downwards
         use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
         cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-        easing_function = nil,        -- Default easing function
-        pre_hook = nil,              -- Function to run before the scrolling animation starts
-        post_hook = nil,              -- Function to run after the scrolling animation ends
-        })
-  end
-},
+        easing_function = nil, -- Default easing function
+        pre_hook = nil, -- Function to run before the scrolling animation starts
+        post_hook = nil, -- Function to run after the scrolling animation ends
+      })
+    end
+  },
 
-{
-  "ggandor/lightspeed.nvim",
-  event = "BufRead",
-},
+  {
+    "ggandor/lightspeed.nvim",
+    event = "BufRead",
+  },
+  { "EdenEast/nightfox.nvim" },
+  { 'sainnhe/gruvbox-material' },
+  { 'sainnhe/everforest' },
+  { 'kvrohit/rasmus.nvim' },
+  { 'rockyzhang24/arctic' },
+  { 'rose-pine/neovim' },
+  { 'rktjmp/lush.nvim' },
+  { 'RishabhRD/gruvy' },
+  { 'rmehri01/onenord.nvim' },
+  { 'titanzero/zephyrium' },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -212,11 +220,20 @@ lvim.plugins = {
 -- })
 
 -- config para consertar barra lateral
--- lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
+lvim.builtin.nvimtree.setup.actions.open_file.resize_window = true
 
--- keybinds
+-- keybindings
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
-
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
-
 lvim.keys.normal_mode["<S-x>"] = ":BufferKill<CR>"
+
+-- emmet config
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require("lspconfig")["emmet_ls"].setup({
+  capabilities = capabilities,
+  filetypes = {
+    'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss',
+    'less', 'svelte', 'astro'
+  }
+})
